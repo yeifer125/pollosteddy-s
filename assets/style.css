@@ -1,0 +1,269 @@
+/* Modern CSS - Style inspired by McDonald's clean menu design */
+:root {
+  --red: #da291c;
+  --yellow: #ffc72c;
+  --black: #000;
+  --white: #fff;
+  --gray: #757575;
+  --light-gray: #f2f2f2;
+}
+
+/* Reset & base */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  font-family: 'Montserrat', sans-serif;
+  background: var(--white);
+  color: var(--black);
+}
+body {
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3 { color: var(--red); }
+p { color: var(--gray); }
+
+/* Header - clean horizontal layout */
+header {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  background: var(--white);
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-left { flex: 0 0 auto; }
+.header-right { flex: 1; text-align: center; }
+.pulse-logo img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Navigation - horizontal */
+nav {
+  background: var(--white);
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 0.8rem 0;
+}
+nav a {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+nav a:hover { color: var(--red); }
+
+/* Sections */
+section {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Menu - Mobile horizontal scroll (McDonald's style) */
+.menu-wrapper-mobile {
+  display: block;
+  overflow-x: auto;
+  padding: 1rem;
+}
+.menu-slider {
+  display: flex;
+  gap: 1rem;
+}
+.menu-category-slider {
+  min-width: 280px;
+  max-width: 300px;
+  flex-shrink: 0;
+}
+
+/* Menu - Desktop grid 3 columns */
+.menu-wrapper-desktop {
+  display: none;
+}
+
+/* Menu category */
+.menu-category {
+  break-inside: avoid;
+}
+.menu-category h3 {
+  color: var(--red);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--red);
+}
+
+/* Menu item - horizontal image + text */
+.menu-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+.menu-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.menu-item img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.menu-info {
+  flex: 1;
+}
+.menu-info h4 {
+  color: var(--black);
+  font-size: 1rem;
+  margin: 0 0 0.3rem 0;
+}
+.menu-info p {
+  font-size: 0.85rem;
+  margin: 0 0 0.3rem 0;
+}
+.price {
+  color: var(--red);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.badge {
+  background: var(--red);
+  color: var(--white);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Locales grid */
+.locales-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.location {
+  padding: 1.2rem;
+  background: var(--light-gray);
+  border-radius: 10px;
+}
+.location h3 { margin-bottom: 0.5rem; font-size: 1rem; }
+.location p { font-size: 0.85rem; margin: 0.2rem 0; }
+
+/* Services */
+.services-list {
+  list-style: none;
+  padding: 0;
+}
+.services-list li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+.services-list li:last-child { border-bottom: none; }
+
+/* Promo banner */
+.promo-banner {
+  display: flex;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: var(--light-gray);
+  border-radius: 12px;
+  align-items: center;
+}
+.promo-banner img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+/* Pub banner */
+.pub-banner {
+  display: flex;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: var(--yellow);
+  border-radius: 12px;
+  align-items: center;
+}
+.pub-banner img {
+  width: 150px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  background: var(--black);
+  color: var(--white);
+  font-size: 0.9rem;
+}
+
+/* Hamburger for mobile */
+.hamburger {
+  display: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  header { padding: 0.5rem 1rem; }
+  .pulse-logo img { width: 80px; height: 80px; }
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background: var(--white);
+    padding: 0.5rem 1rem;
+  }
+  .promo-grid { grid-template-columns: 1fr; }
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    width: 24px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--black);
+    margin: 2px 0;
+  }
+  nav a { display: none; }
+  nav.open a { display: block; }
+}
+
+/* Desktop responsive */
+@media (min-width: 769px) {
+  .menu-wrapper-mobile { display: none; }
+  .menu-wrapper-desktop { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+}

@@ -8,309 +8,190 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    :root{
-      --primary:#d62828;
-      --secondary:#ff6b35;
-      --orange:#ff9f1c;
-      --dark:#222;
-      --light:#fff;
-      --light-gray:#f8f9fa;
-      --border:#ddd;
-      --dark-gray:#666;
-    }
-    *, *::before, *::after{margin:0;padding:0;box-sizing:border-box;}
-    body{
-      font-family:'Montserrat',sans-serif;
-      color:var(--light);
-      background:#000;
-      line-height:1.6;
-    }
-    header{
-      position:relative;
-      background:linear-gradient(135deg,#000 0%,#1a1a1a 100%);
-      color:var(--light);
-      text-align:center;
-      padding:5rem 1rem 3rem;
-      overflow:hidden;
-    }
-    header::after{
-      content:'';
-      position:absolute;
-      top:-50%;left:-50%;
-      width:200%;height:200%;
-      background:conic-gradient(from 0deg,var(--primary),var(--secondary),var(--orange),var(--primary));
-      opacity:.05;
-      animation:spin 20s linear infinite;
-      z-index:1;
-    }
-    @keyframes spin{
-      to{transform:rotate(360deg);}
-    }
-    header h1{
-      font-size:clamp(2.5rem,5vw,4rem);
-      margin-bottom:.5rem;
-      font-weight:800;
-      position:relative;
-      z-index:2;
-      text-shadow:0 0 10px var(--orange),0 0 20px var(--orange),0 0 30px var(--secondary);
-    }
-    .pulse-logo{
-      position:absolute;
-      top:20%;left:10%;
-      transform:translate(-20%,-10%);
-      width:180px;height:180px;
-      z-index:1;
-      animation:glow 3s ease-in-out infinite alternate;
-      filter:drop-shadow(0 0 20px var(--orange)) drop-shadow(0 0 40px var(--primary));
-    }
-    .pulse-logo img{
-      width:100%;height:100%;
-      border-radius:50%;
-      border:3px solid var(--primary);
-      object-fit:cover;
-    }
-    @keyframes glow{
-      from{transform:translate(-20%,-10%) scale(1);}
-      to{transform:translate(-20%,-10%) scale(1.1);}
-    }
-    header p{
-      font-size:1.3rem;
-      opacity:.95;
-      position:relative;
-    }
-    nav{
-      background:var(--secondary);
-      display:flex;
-      justify-content:center;
-      gap:2rem;
-      padding:.8rem 0;
-      position:sticky;
-      top:0;
-      z-index:100;
-      box-shadow:0 2px 10px rgba(0,0,0,.1);
-    }
-    nav a{
-      color:var(--light);
-      text-decoration:none;
-      font-weight:600;
-      transition:color .3s;
-    }
-    nav a:hover{color:#ffd;}
-    section{padding:4rem 1rem;max-width:1200px;margin:auto;}
-    h2{
-      font-size:2.2rem;
-      margin-bottom:2rem;
-      color:var(--primary);
-      position:relative;
-      padding-bottom:.5rem;
-    }
-    h2::after{
-      content:'';
-      position:absolute;
-      bottom:0;
-      left:0;
-      width:80px;
-      height:4px;
-      background:var(--orange);
-      border-radius:2px;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:2rem;
-    }
-    .location{
-      border:2px solid var(--primary);
-      border-radius:12px;
-      padding:2rem;
-      background:#1a0a00;
-      color:#fff;
-      transition:all .3s;
-      position:relative;
-      overflow:hidden;
-    }
-    .location::before{
-      content:'';
-      position:absolute;
-      top:0;left:0;
-      width:4px;height:100%;
-      background:var(--secondary);
-    }
-    .location:hover{
-      transform:translateY(-8px);
-      box-shadow:0 12px 30px rgba(214,40,40,.15);
-    }
-    .location h3{
-      margin-bottom:.5rem;
-      color:var(--secondary);
-      font-size:1.4rem;
-    }
-    .services-list{
-      list-style:none;
-    }
-    .services-list li{
-      margin-bottom:.5rem;
-      padding-left:.5rem;
-    }
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:1rem;
-      margin:2rem 0;
-    }
-    .gallery img{
-      width:100%;
-      border-radius:12px;
-      height:200px;
-      object-fit:cover;
-      transition:transform .3s;
-    }
-    .gallery img:hover{transform:scale(1.05);}
-    .menu-section{
-      background:#1a0a00;
-      color:#fff;
-      border-left:4px solid var(--primary);
-      padding:1.5rem;
-      margin-bottom:1.5rem;
-      border-radius:0 8px 8px 0;
-    }
-    .menu-section h3{
-      color:var(--secondary);
-      margin-bottom:.8rem;
-    }
-    .badge{
-      display:inline-block;
-      background:var(--orange);
-      color:#fff;
-      padding:.3rem .8rem;
-      border-radius:20px;
-      font-size:.85rem;
-      margin-left:.5rem;
-    }
-    .hero-buttons{
-      margin-top:2rem;
-      display:flex;
-      gap:1rem;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-block;
-      padding:.8rem 2rem;
-      border-radius:30px;
-      text-decoration:none;
-      font-weight:600;
-      transition:all .3s;
-      border:2px solid transparent;
-    }
-    .btn-primary{
-      background:var(--primary);
-      color:#fff;
-    }
-    .btn-primary:hover{
-      background:#fff;color:var(--primary);border-color:var(--primary);
-    }
-    .btn-secondary{
-      background:var(--secondary);
-      color:#fff;
-    }
-    .btn-secondary:hover{
-      background:#fff;color:var(--secondary);border-color:var(--secondary);
-    }
-    .neon-text{
-      text-shadow:0 0 10px var(--orange),0 0 20px var(--orange),0 0 30px var(--secondary);
-    }
-    .pulse{
-      animation:pulse 2s infinite;
-    }
-    @keyframes pulse{
-      0%{transform:scale(1);}
-      50%{transform:scale(1.05);}
-      100%{transform:scale(1);}
-    }
-    .btn-primary:hover{
-      box-shadow:0 0 20px var(--orange);
-    }
-    footer{
-      background:var(--dark);
-      color:#aaa;
-      text-align:center;
-      padding:2.5rem 1rem;
-      margin-top:3rem;
-    }
-    footer a{
-      color:var(--orange);
-      text-decoration:none;
-    }
-    @media (max-width:768px){
-      header{padding:3rem 1rem;}
-      nav{flex-wrap:wrap;gap:1rem;}
-      .hero-buttons{flex-direction:column;}
-    }
-  </style>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <header>
-  <div class="pulse-logo"><img src="https://p16-common-sign.tiktokcdn.com/tos-maliva-avt-0068/3fbeb1554f98cc6851d236b5d38744f4~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=4832ddf0&x-expires=1780329600&x-signature=DnDQoYlaWYwUiGCe0joQ6W7gQDA%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my2" alt="Logo Pollos Teddy's"></div>
-  <h1><i class="fas fa-drumstick-bite"></i> Pollos Teddy's</h1>
-  <p>Pollo frito crujiente y jugoso - ¡El sabor que conquista San Carlos!</p>
+  <div class="header-left">
+    <div class="pulse-logo"><img src="https://p16-common-sign.tiktokcdn.com/tos-maliva-avt-0068/3fbeb1554f98cc6851d236b5d38744f4~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=4832ddf0&x-expires=1780329600&x-signature=DnDQoYlaWYwUiGCe0joQ6W7gQDA%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my2" alt="Logo Pollos Teddy's"></div>
+  </div>
+  <div class="header-right">
+    <h1><i class="fas fa-drumstick-bite"></i> Pollos Teddy's</h1>
+    <p>El sabor que conquista San Carlos</p>
+  </div>
 </header>
 
 <nav>
-  <a href="#sobre"><i class="fas fa-home"></i> Sobre nosotros</a>
+  <div class="hamburger"><span></span><span></span><span></span></div>
   <a href="#menu"><i class="fas fa-utensils"></i> Menú</a>
+  <a href="#sobre"><i class="fas fa-home"></i> Sobre nosotros</a>
   <a href="#servicios"><i class="fas fa-concierge-bell"></i> Servicios</a>
   <a href="#locales"><i class="fas fa-map-marker-alt"></i> Locales</a>
   <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+  <a href="#publicidad"><i class="fas fa-bullhorn"></i> Publicidad</a>
 </nav>
+<script>
+  document.querySelector('.hamburger').addEventListener('click', function(){
+    document.querySelector('nav').classList.toggle('open');
+  });
+</script>
+
+<section id="oferta">
+  <div class="promo-grid">
+    <div class="promo-banner" id="promo-rotator-1">
+      <img src="" alt="Oferta" id="promo-img-1">
+      <div>
+        <h3 id="promo-titulo-1"></h3>
+        <p id="promo-desc-1"></p>
+        <p class="price" id="promo-precio-1"></p>
+        <a href="" target="_blank" class="badge" id="promo-link-1">Pedir ahora</a>
+      </div>
+    </div>
+    <div class="promo-banner" id="promo-rotator-2">
+      <img src="" alt="Oferta" id="promo-img-2">
+      <div>
+        <h3 id="promo-titulo-2"></h3>
+        <p id="promo-desc-2"></p>
+        <p class="price" id="promo-precio-2"></p>
+        <a href="" target="_blank" class="badge" id="promo-link-2">Pedir ahora</a>
+      </div>
+    </div>
+    <div class="promo-banner" id="promo-rotator-3">
+      <img src="" alt="Oferta" id="promo-img-3">
+      <div>
+        <h3 id="promo-titulo-3"></h3>
+        <p id="promo-desc-3"></p>
+        <p class="price" id="promo-precio-3"></p>
+        <a href="" target="_blank" class="badge" id="promo-link-3">Pedir ahora</a>
+      </div>
+    </div>
+    <div class="promo-banner" id="promo-rotator-4">
+      <img src="" alt="Oferta" id="promo-img-4">
+      <div>
+        <h3 id="promo-titulo-4"></h3>
+        <p id="promo-desc-4"></p>
+        <p class="price" id="promo-precio-4"></p>
+        <a href="" target="_blank" class="badge" id="promo-link-4">Pedir ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+const ofertas = [
+  { img: "https://pedidosya.dhmedia.io/image/pedidosya/products/31a5561b-b462-4be2-89d8-b1bd1f1baf35.jpeg?quality=90", titulo: "Combo Familiar", desc: "6 trocitos + 3 papas + 6 tortillas + 3 mayonesas", precio: "₡8,000", link: "https://www.pedidosya.cr/restaurantes/grecia/pollos-teddys-grecia-42721e19-990e-4b26-9f45-3a215cf47569-menu" },
+  { img: "https://pedidosya.dhmedia.io/image/pedidosya/products/bf8b11c0-92ef-4bd3-92df-d21f18a229c0.jpeg?quality=90", titulo: "Combo 1", desc: "2 piezas pollo + papas + tortillas + mayonesa + refresco", precio: "₡3,840", link: "https://www.pedidosya.cr/restaurantes/grecia/pollos-teddys-grecia-42721e19-990e-4b26-9f45-3a215cf47569-menu" },
+  { img: "https://pedidosya.dhmedia.io/image/pedidosya/products/8cb19ea0-710c-44c4-b7b7-3a15923fc5ed.jpeg?quality=90", titulo: "Promo Medio Pollo", desc: "1 medio pollo + papas + tortillas", precio: "₡5,000", link: "https://www.pedidosya.cr/restaurantes/grecia/pollos-teddys-grecia-42721e19-990e-4b26-9f45-3a215cf47569-menu" },
+  { img: "https://pedidosya.dhmedia.io/image/pedidosya/products/948be7ae-2937-45ee-94b9-58718dbe1aef.jpeg?quality=90", titulo: "Mayonesa Gratis", desc: "Lleva tu pedido y recibe mayonesa extra", precio: "Solo hoy", link: "https://wa.me/50662027144" }
+];
+let idx = [0,1,2,3];
+function rotar() {
+  [1,2,3,4].forEach(n => {
+    const o = ofertas[idx[n-1]];
+    document.getElementById('promo-img-'+n).src = o.img;
+    document.getElementById('promo-titulo-'+n).textContent = o.titulo;
+    document.getElementById('promo-desc-'+n).textContent = o.desc;
+    document.getElementById('promo-precio-'+n).textContent = o.precio;
+    document.getElementById('promo-link-'+n).href = o.link;
+  });
+  idx = idx.map(i => (i + 1) % ofertas.length);
+}
+rotar();
+setInterval(rotar, 4000);
+</script>
+
+<section id="menu">
+  <h2>Menú Completo</h2>
+
+  <!-- Mobile horizontal scroll (McDonald's style) -->
+  <div class="menu-wrapper-mobile">
+    <div class="menu-slider">
+      <div class="menu-category-slider">
+        <h3><i class="fas fa-fire"></i> Combos</h3>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/bf8b11c0-92ef-4bd3-92df-d21f18a229c0.jpeg?quality=90"><div class="menu-info"><h4>Combo 1 <span class="badge">Popular</span></h4><p>2 piezas pollo + papas + tortillas + mayonesa + refresco</p><p class="price">₡3,840</p></div></div>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/a5ff7dd9-53f0-4570-86a2-82c1a9a3b5ec.jpeg?quality=90"><div class="menu-info"><h4>Combo 2</h4><p>1.800 trocitos + papas + tortillas + mayonesa + refresco</p><p class="price">₡3,840</p></div></div>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/2e038d58-9bf9-4d01-8496-a71294ecbd94.jpeg?quality=90"><div class="menu-info"><h4>Combo 3</h4><p>5.500 trocitos + papas + tortillas + mayonesa + refresco 1.5L</p><p class="price">₡11,160</p></div></div>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/eadac37a-4192-4aea-8770-94dc564dfdbe.jpeg?quality=90"><div class="menu-info"><h4>Combo 4</h4><p>6 piezas pollo + papas + tortillas + mayonesa + refresco 1.5L</p><p class="price">₡10,200</p></div></div>
+      </div>
+      <div class="menu-category-slider">
+        <h3><i class="fas fa-drumstick-bite"></i> Pollo</h3>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/d1270482-b410-46d6-9266-f808f1a7707f.jpeg?quality=90"><div class="menu-info"><h4>Pechuga y ala</h4><p>Tortillas + mayonesa casera</p><p class="price">₡2,520</p></div></div>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/ab5680b8-9a4d-491b-a6ae-0148f1bd8ce1.jpeg?quality=90"><div class="menu-info"><h4>Cuarto y muslo</h4><p>Tortillas + mayonesa casera</p><p class="price">₡2,160</p></div></div>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/8cb19ea0-710c-44c4-b7b7-3a15923fc5ed.jpeg?quality=90"><div class="menu-info"><h4>Trocitos sin chile</h4><p>Tortillas + mayonesa casera</p><p class="price">₡2,160</p></div></div>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/80201107-eb2e-41ee-928f-81e2199ba913.jpeg?quality=90"><div class="menu-info"><h4>Trocitos con chile <span class="badge">Picante</span></h4><p>Tortillas + mayonesa casera</p><p class="price">₡2,160</p></div></div>
+      </div>
+      <div class="menu-category-slider">
+        <h3><i class="fas fa-star"></i> Otros</h3>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/baddb38b-f0f9-45b9-8db6-214dd8418358.jpeg?quality=90"><div class="menu-info"><h4>Pop teddy´s</h4><p>Fajitas empanizadas + acompañamiento</p><p class="price">₡3,600</p></div></div>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/3c0f2b46-7a6b-4d40-bd76-1207044e57b3.jpeg?quality=90"><div class="menu-info"><h4>Chalupas</h4><p>Chalupas con pollo</p><p class="price">₡2,400</p></div></div>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/8d33a189-8bf6-4a37-88f4-e68a4fc9f95a.jpeg?quality=90"><div class="menu-info"><h4>Burritos</h4><p>Burrito al momento (jalapeño o regular)</p><p class="price">₡3,600</p></div></div>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/fec8c64f-7f85-4dc8-99fb-fab82709c15b.jpeg?quality=90"><div class="menu-info"><h4>Salchipapas</h4><p>Acompaña con tu salsa favorita</p><p class="price">₡2,640</p></div></div>
+      </div>
+      <div class="menu-category-slider">
+        <h3><i class="fas fa-french-fries"></i> Acompañamientos</h3>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/8076e180-8248-474e-a727-ac1a68322ddb.jpeg?quality=90"><div class="menu-info"><h4>Papas en gajo</h4><p>Papas crujientes</p><p class="price">₡2,160</p></div></div>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/4428e387-e2dd-478e-b02a-3db39cc44e13.jpeg?quality=90"><div class="menu-info"><h4>Papas a la francesa</h4><p>Papas fritas</p><p class="price">₡1,440</p></div></div>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/948be7ae-2937-45ee-94b9-58718dbe1aef.jpeg?quality=90"><div class="menu-info"><h4>Mayonesa casera</h4><p>Mayonesa especial</p><p class="price">₡900</p></div></div>
+      </div>
+      <div class="menu-category-slider">
+        <h3><i class="fas fa-hamburger"></i> Hamburguesas</h3>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/ab266912-1916-4b65-8636-102c114c7208.jpeg?quality=90"><div class="menu-info"><h4>Hamburguesa grande <span class="badge">Fuerte</span></h4><p>Lechuga, tomate, queso. Papas extra</p><p class="price">₡4,200</p></div></div>
+        <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/01414d6d-a056-4e4d-af37-63a26d7dc83b.jpeg?quality=90"><div class="menu-info"><h4>Hamburguesa pequeña</h4><p>Pollo crujiente + lechuga + tomate + queso</p><p class="price">₡2,400</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop grid 3 columnas -->
+  <div class="menu-wrapper-desktop">
+    <div class="menu-category">
+      <h3><i class="fas fa-fire"></i> Combos</h3>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/bf8b11c0-92ef-4bd3-92df-d21f18a229c0.jpeg?quality=90"><div class="menu-info"><h4>Combo 1 <span class="badge">Popular</span></h4><p>2 piezas pollo + papas + tortillas + mayonesa + refresco</p><p class="price">₡3,840</p></div></div>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/a5ff7dd9-53f0-4570-86a2-82c1a9a3b5ec.jpeg?quality=90"><div class="menu-info"><h4>Combo 2</h4><p>1.800 trocitos + papas + tortillas + mayonesa + refresco</p><p class="price">₡3,840</p></div></div>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/2e038d58-9bf9-4d01-8496-a71294ecbd94.jpeg?quality=90"><div class="menu-info"><h4>Combo 3</h4><p>5.500 trocitos + papas + tortillas + mayonesa + refresco 1.5L</p><p class="price">₡11,160</p></div></div>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/eadac37a-4192-4aea-8770-94dc564dfdbe.jpeg?quality=90"><div class="menu-info"><h4>Combo 4</h4><p>6 piezas pollo + papas + tortillas + mayonesa + refresco 1.5L</p><p class="price">₡10,200</p></div></div>
+    </div>
+    <div class="menu-category">
+      <h3><i class="fas fa-drumstick-bite"></i> Pollo</h3>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/d1270482-b410-46d6-9266-f808f1a7707f.jpeg?quality=90"><div class="menu-info"><h4>Pechuga y ala</h4><p>Tortillas + mayonesa casera</p><p class="price">₡2,520</p></div></div>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/ab5680b8-9a4d-491b-a6ae-0148f1bd8ce1.jpeg?quality=90"><div class="menu-info"><h4>Cuarto y muslo</h4><p>Tortillas + mayonesa casera</p><p class="price">₡2,160</p></div></div>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/8cb19ea0-710c-44c4-b7b7-3a15923fc5ed.jpeg?quality=90"><div class="menu-info"><h4>Trocitos sin chile</h4><p>Tortillas + mayonesa casera</p><p class="price">₡2,160</p></div></div>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/80201107-eb2e-41ee-928f-81e2199ba913.jpeg?quality=90"><div class="menu-info"><h4>Trocitos con chile <span class="badge">Picante</span></h4><p>Tortillas + mayonesa casera</p><p class="price">₡2,160</p></div></div>
+    </div>
+    <div class="menu-category">
+      <h3><i class="fas fa-star"></i> Otros</h3>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/baddb38b-f0f9-45b9-8db6-214dd8418358.jpeg?quality=90"><div class="menu-info"><h4>Pop teddy´s</h4><p>Fajitas empanizadas + acompañamiento</p><p class="price">₡3,600</p></div></div>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/3c0f2b46-7a6b-4d40-bd76-1207044e57b3.jpeg?quality=90"><div class="menu-info"><h4>Chalupas</h4><p>Chalupas con pollo</p><p class="price">₡2,400</p></div></div>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/8d33a189-8bf6-4a37-88f4-e68a4fc9f95a.jpeg?quality=90"><div class="menu-info"><h4>Burritos</h4><p>Burrito al momento (jalapeño o regular)</p><p class="price">₡3,600</p></div></div>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/fec8c64f-7f85-4dc8-99fb-fab82709c15b.jpeg?quality=90"><div class="menu-info"><h4>Salchipapas</h4><p>Acompaña con tu salsa favorita</p><p class="price">₡2,640</p></div></div>
+    </div>
+    <div class="menu-category">
+      <h3><i class="fas fa-french-fries"></i> Acompañamientos</h3>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/8076e180-8248-474e-a727-ac1a68322ddb.jpeg?quality=90"><div class="menu-info"><h4>Papas en gajo</h4><p>Papas crujientes</p><p class="price">₡2,160</p></div></div>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/4428e387-e2dd-478e-b02a-3db39cc44e13.jpeg?quality=90"><div class="menu-info"><h4>Papas a la francesa</h4><p>Papas fritas</p><p class="price">₡1,440</p></div></div>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/948be7ae-2937-45ee-94b9-58718dbe1aef.jpeg?quality=90"><div class="menu-info"><h4>Mayonesa casera</h4><p>Mayonesa especial</p><p class="price">₡900</p></div></div>
+    </div>
+    <div class="menu-category">
+      <h3><i class="fas fa-hamburger"></i> Hamburguesas</h3>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/ab266912-1916-4b65-8636-102c114c7208.jpeg?quality=90"><div class="menu-info"><h4>Hamburguesa grande <span class="badge">Fuerte</span></h4><p>Lechuga, tomate, queso. Papas extra</p><p class="price">₡4,200</p></div></div>
+      <div class="menu-item"><img src="https://pedidosya.dhmedia.io/image/pedidosya/products/01414d6d-a056-4e4d-af37-63a26d7dc83b.jpeg?quality=90"><div class="menu-info"><h4>Hamburguesa pequeña</h4><p>Pollo crujiente + lechuga + tomate + queso</p><p class="price">₡2,400</p></div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;text-align:center;">
+    <a href="https://www.pedidosya.cr/restaurantes/grecia/pollos-teddys-grecia-42721e19-990e-4b26-9f45-3a215cf47569-menu" target="_blank" class="badge" style="font-size:1rem;padding:0.6rem 1.2rem;">Ordenar por PedidosYa</a>
+  </div>
+</section>
 
 <section id="sobre">
   <h2>Sobre Pollos Teddy's</h2>
-  <p style="font-size:1.1rem;">Pollos Teddy's es una cadena de pollerías con múltiples sucursales en Alajuela, Costa Rica. Especializada en <strong>pollo frito</strong> crujiente y jugoso con precios accesibles. Todos nuestros productos son únicos y preparados por nuestra familia. Contamos con opciones de delivery, take-away y consumo en el lugar.</p>
-</section>
-
-<section id="menu">
-  <h2>Menú Especial</h2>
-  <div class="menu-section" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
-    <img src="crujiente.jpeg" alt="Pollo frito crujiente" style="width:150px;height:150px;object-fit:cover;border-radius:12px;flex-shrink:0;" />
-    <div style="flex:1;min-width:200px;">
-      <h3><i class="fas fa-fire"></i> Pollo frito Teddy's</h3>
-      <ul class="services-list">
-        <li><strong>Pollo entero</strong> <span class="badge">Más popular</span> - El clásico con piel crujiente y carne jugosa</li>
-        <li><strong>Pollo medio pollo</strong> - Para compartir en familia</li>
-        <li><strong>Muslos</strong> - Porción individual perfecta</li>
-        <li><strong>Alitas</strong> - Crujientes y sazonadas</li>
-      </ul>
-    </div>
-  </div>
-  <div class="menu-section" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
-    <img src="papas.jpeg" alt="Acompañamientos" style="width:150px;height:150px;object-fit:cover;border-radius:12px;flex-shrink:0;" />
-    <div style="flex:1;min-width:200px;">
-      <h3><i class="fas fa-french-fries"></i> Acompañamientos</h3>
-      <ul class="services-list">
-      <li>Papas fritas</li>
-      <li>Yuca frita</li>
-      <li>Ensalada fresca</li>
-    </ul>
-    </div>
-  </div>
-  <div class="gallery">
-    <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGhilubWQVdawhRRhpq6QZiMKX7McMvH4iCI1CTfCevXbfdSvu0-ot4UTfZrSlM1RKN4pfpjpLpHBoTlGD2sjedBXEkuFhDm9GyQN04r-wHR-L05PQsqD57rkjVAL6HRW0dI7c12A=w680-h510-rw" alt="Local Teddy's 1">
-    <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAEab-lt_ZNnW9A5fupwkMTrvHey4_VX8Uf-K2eVZpX7kad9tUgbLEHZcru9I6wUM32VJPc7G03LaBrLncFNXgQZKCofZaZk0o3mcn2jVKAq8TgtZIMB7xlc4jVHVmbWcTjriVuaAvNLwVk=s680-w680-h510-rw" alt="Local Teddy's 2">
-  </div>
-  <div style="margin-top:1.5rem;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.1);max-width:500px;margin-left:auto;margin-right:auto;">
-    <video controls style="width:100%;aspect-ratio:9/16;object-fit:cover;">
-      <source src="DYfOoMXR3nL.mp4" type="video/mp4">
-      Tu navegador no soporta el elemento video.
-    </video>
-    <p style="padding:.5rem 1rem;background:#1a0a00;margin:0;text-align:center;">Casados Teddy's - ¡El sabor casero que te salva el almuerzo!</p>
-  </div>
+  <p><strong>Pollos Teddy's</strong> es una cadena de pollerías establecida en 2015 en La Tigra, San Carlos, Alajuela, Costa Rica. Especializada en <strong>pollo frito</strong> crujiente y jugoso, con recetas caseras y salsas propias.</p>
+  <p>Con 7 sucursales en toda el área de Alajuela, servimos a nuestra comunidad con rapidez y sabor. Ingredientes frescos, precios accesibles y atención cercana.</p>
+  <p><strong>Misión:</strong> Brindar el mejor pollo frito con calidad y rapidez.</p>
+  <p><strong>Visión:</strong> Expandirnos a todo Costa Rica manteniendo nuestro sabor original.</p>
 </section>
 
 <section id="servicios">
-  <h2>Servicios que ofrecemos</h2>
+  <h2>Servicios</h2>
   <ul class="services-list">
     <li><i class="fas fa-motorcycle"></i> Retiros en la puerta (drive-thru)</li>
     <li><i class="fas fa-box"></i> Delivery y take-away disponible</li>
@@ -320,86 +201,68 @@
 </section>
 
 <section id="locales">
-  <h2>Locales Pollos Teddy's – Alajuela</h2>
-  <p style="margin-bottom:1.5rem;">Todos los locales abren a las 11:00 a.m. Lunes-Domingo.</p>
-
-  <div class="grid">
+  <h2>Locales</h2>
+  <p>Todos los locales abren a las 11:00 a.m. Lunes-Domingo.</p>
+  <div class="locales-grid">
     <div class="location">
       <h3><i class="fas fa-map-pin"></i> La Tigra</h3>
-      <p><strong>Dirección:</strong> Frente al súper Cristian, La Tigra, Alajuela</p>
+      <p><strong>Dirección:</strong> Frente al súper Cristian</p>
       <p><strong>Precios:</strong> ₡2,000-4,000</p>
-      <p><strong>Rating:</strong> 4.7 (67 reseñas)</p>
-      <p><strong>Servicios:</strong> Consumo en el lugar · Retiros en la puerta · Entrega sin contacto</p>
     </div>
-
     <div class="location">
       <h3><i class="fas fa-map-pin"></i> Santa Clara</h3>
-      <p><strong>Dirección:</strong> TEC 21001, Frente al Tecnológico de Costa Rica</p>
+      <p><strong>Dirección:</strong> TEC 21001, Frente al TEC</p>
       <p><strong>Precios:</strong> ₡5,000-10,000</p>
-      <p><strong>Rating:</strong> 4.5 (129 reseñas)</p>
-      <p><strong>Servicios:</strong> Consumo en el lugar · Pedidos desde el automóvil · Entrega sin contacto</p>
     </div>
-
     <div class="location">
       <h3><i class="fas fa-map-pin"></i> Ciudad Quesada</h3>
-      <p><strong>Dirección:</strong> 25 metros sur de los Tribunales de Justicia</p>
+      <p><strong>Dirección:</strong> 25m sur de los Tribunales</p>
       <p><strong>Precios:</strong> ₡1,000-5,000</p>
-      <p><strong>Rating:</strong> 4.4 (17 reseñas)</p>
-      <p><strong>Servicios:</strong> Consumo en el lugar · Para llevar · Entrega a domicilio</p>
     </div>
-
     <div class="location">
       <h3><i class="fas fa-map-pin"></i> Florencia</h3>
       <p><strong>Dirección:</strong> Provincia de Alajuela San Carlos</p>
       <p><strong>Precios:</strong> ₡2,000-4,000</p>
-      <p><strong>Rating:</strong> 4.5 (36 reseñas)</p>
-      <p><strong>Servicios:</strong> Consumo en el lugar · Retiros en la puerta · Entrega sin contacto</p>
     </div>
-
     <div class="location">
       <h3><i class="fas fa-map-pin"></i> Grecia</h3>
-      <p><strong>Dirección:</strong> Paca Loca, A un costado del Lagar, justo frente a</p>
+      <p><strong>Dirección:</strong> Paca Loca, Frente al Lagar</p>
       <p><strong>Precios:</strong> ₡1,000-5,000</p>
-      <p><strong>Rating:</strong> 5.0 (13 reseñas)</p>
-      <p><strong>Servicios:</strong> Solo para llevar</p>
     </div>
-
     <div class="location">
       <h3><i class="fas fa-map-pin"></i> Aguas Zarcas</h3>
       <p><strong>Dirección:</strong> Costado este de la Iglesia Católica</p>
-      <p><strong>Precios:</strong> No disponible</p>
-      <p><strong>Rating:</strong> 5.0 (6 reseñas)</p>
-      <p><strong>Servicios:</strong> Consumo en el lugar · Retiros en la puerta · Entrega a domicilio</p>
     </div>
-
     <div class="location">
       <h3><i class="fas fa-map-pin"></i> Boca de Arenal</h3>
-      <p><strong>Dirección:</strong> 25 metros Norte de la Iglesia Católica</p>
-      <p><strong>Precios:</strong> No disponible</p>
-      <p><strong>Rating:</strong> 4.3 (3 reseñas)</p>
-      <p><strong>Servicios:</strong> Consumo en el lugar · Retiros en la puerta</p>
+      <p><strong>Dirección:</strong> 25m Norte de la Iglesia Católica</p>
     </div>
   </div>
 </section>
 
 <section id="contacto">
   <h2>Contacto</h2>
-  <div class="location">
-    <p><i class="fab fa-whatsapp"></i> WhatsApp: +506 6202 7144</p>
-    <p><i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/pollos__teddys/" target="_blank">@pollos__teddys</a></p>
-    <p><i class="fas fa-envelope"></i> Email: info@pollosteddys.cr</p>
+  <p><i class="fab fa-whatsapp"></i> WhatsApp: +506 6202 7144</p>
+  <p><i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/pollos__teddys/" target="_blank">@pollos__teddys</a></p>
+  <p><i class="fas fa-envelope"></i> Email: info@pollosteddys.cr</p>
+</section>
+
+<section id="publicidad">
+  <h2 style="text-align:center;color:var(--red);">Publicidad</h2>
+  <div class="pub-banner">
+    <img src="belicos.jpg" alt="Gym Belicos">
+    <div>
+      <h3>Gym Belicos - San Carlos</h3>
+      <p>Entrena fuerte, come sano. Pollos Teddy's complementa tu dieta fitness.</p>
+      <a href="https://wa.me/50662027144" target="_blank" class="badge" style="background:#000;margin-right:0.5rem;">WhatsApp</a>
+      <a href="https://www.instagram.com/belicosfit/" target="_blank" class="badge" style="background:var(--red);">Instagram</a>
+    </div>
   </div>
 </section>
 
 <footer>
   <p>© 2026 Pollos Teddy's – Todos los derechos reservados.</p>
-  <p style="margin-top:.5rem;">Hecho con sabor en La Tigra, San Carlos, Alajuela, Costa Rica</p>
-  <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);">
-    <a href="https://www.instagram.com/belicosfit/" target="_blank" style="display:inline-block;width:60px;height:60px;border-radius:50%;overflow:hidden;border:2px solid var(--orange);transition:transform .3s;">
-      <img src="belicos.jpg" alt="Clip BelicosFit" style="width:100%;height:100%;object-fit:cover;">
-    </a>
-    <p style="margin-top:.5rem;font-size:.8rem;color:var(--dark-gray);">Publicidad - BelicosFit</p>
-  </div>
+  <p>Hecho con sabor en La Tigra, San Carlos, Alajuela, Costa Rica</p>
 </footer>
 
 </body>
