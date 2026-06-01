@@ -210,8 +210,8 @@ section {
   align-items: center;
 }
 .pub-banner img {
-  width: 150px;
-  height: 80px;
+  width: 200px;
+  height: 100px;
   object-fit: cover;
   border-radius: 8px;
   flex-shrink: 0;
