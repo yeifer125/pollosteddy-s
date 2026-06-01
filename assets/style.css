@@ -210,7 +210,7 @@ section {
   align-items: center;
 }
 .pub-banner img {
-  width: 200px;
+  width: 150px;
   height: 100px;
   object-fit: cover;
   border-radius: 8px;
