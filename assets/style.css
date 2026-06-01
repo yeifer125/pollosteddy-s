@@ -211,9 +211,8 @@ section {
 }
 .pub-banner img {
   width: 150px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 8px;
+  height: 80px;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
